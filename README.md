@@ -1,31 +1,126 @@
-A Github Pages template for academic websites. This was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License. See LICENSE.md.
+# kenenwodo.github.io
 
-I think I've got things running smoothly and fixed some major bugs, but feel free to file issues or make pull requests if you want to improve the generic template / theme.
+Personal academic site for Kenechukwu (Kene) Nwodo. Static Jekyll site, hosted on
+GitHub Pages. Content lives in per-entry files so adding a publication, talk, poster,
+or service item is just dropping in one new file — no template edits.
 
-### Note: if you are using this repo and now get a notification about a security vulnerability, delete the Gemfile.lock file. 
+## Run locally
 
-# Instructions
+```bash
+bundle install
+bundle exec jekyll serve
+# open http://localhost:4000
+```
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this repository](https://github.com/academicpages/academicpages.github.io) by clicking the "fork" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+## Where everything lives
 
-See more info at https://academicpages.github.io/
+| Page              | Edit this                                   |
+|-------------------|---------------------------------------------|
+| Home (About/News) | `_pages/about.md` and `_data/news.yml`      |
+| Publications      | one file per paper in `_publications/`      |
+| Research          | one file per role in `_research/`           |
+| Talks             | one file per talk in `_talks/`              |
+| Posters           | one file per poster in `_posters/`          |
+| Service           | one file per item in `_service/`            |
+| CV                | drop a dated PDF into `files/cv/` (see below) |
+| Profile / links   | the `profile:` block in `_config.yml`       |
+| Colors / styling  | `assets/css/main.css` (top `:root` block)   |
 
-## To run locally (not on GitHub Pages, to serve on your own computer)
+The photo is `images/kene_profile.jpg`. Replace it with the same filename to swap it.
 
-1. Clone the repository and made updates as detailed above
-1. Make sure you have ruby-dev, bundler, and nodejs installed: `sudo apt install ruby-dev ruby-bundler nodejs`
-1. Run `bundle clean` to clean up the directory (no need to run `--force`)
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `bundle exec jekyll liveserve` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+## Adding content (copy a block, change the fields)
 
-# Changelog -- bugfixes and enhancements
+### A publication — new file in `_publications/`, e.g. `2027-usenix-agents.md`
+```yaml
+---
+title: "Full paper title"
+authors: "First Author, **Kenechukwu Nwodo**, Third Author."   # your name in **bold**
+venue: "Conference or journal name"
+year: 2027
+category: "Conference Papers"   # Under Review | Book Chapters | Conference Papers | Thesis
+order: 1                         # position within its category (lower = higher)
+link: "https://doi.org/..."      # optional — leave "" for no link
+note: ""                         # optional italic note, e.g. "Title withheld — under blind review"
+---
+```
+If `link` is set, the title becomes a clickable link (with a ↗). If it's `""`, the
+title is plain text.
 
-There is one logistical issue with a ready-to-fork template theme like academic pages that makes it a little tricky to get bug fixes and updates to the core theme. If you fork this repository, customize it, then pull again, you'll probably get merge conflicts. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch. 
+### A talk — new file in `_talks/`, e.g. `2027-05-01-usenix-talk.md`
+```yaml
+---
+title: "Talk title"
+venue: "Where you're presenting"
+location: "City, ST"
+date: 2027-05-01
+link: ""     # optional link to slides / event page
+order: 1
+---
+Optional one-paragraph description goes here (below the front matter).
+```
 
-To support this, all changes to the underlying code appear as a closed issue with the tag 'code change' -- get the list [here](https://github.com/academicpages/academicpages.github.io/issues?q=is%3Aclosed%20is%3Aissue%20label%3A%22code%20change%22%20). Each issue thread includes a comment linking to the single commit or a diff across multiple commits, so those with forked repositories can easily identify what they need to patch.
+### A poster — new file in `_posters/`, e.g. `2027-08-01-ndss-agent-eval.md`
+```yaml
+---
+title: "Poster title"
+venue: "Where you're presenting"
+location: "City, ST"
+date: 2027-08-01
+link: ""      # optional link to an event/abstract page
+order: 1
+---
+```
+To attach the poster PDF, drop a file into `files/posters/` with the **same name** as
+the poster's `.md` file. So for `_posters/2027-08-01-ndss-agent-eval.md`, the PDF is
+`files/posters/2027-08-01-ndss-agent-eval.pdf`. The "View poster (PDF)" button then
+appears automatically — there's no path to type. If no matching PDF exists yet, no
+button shows, and you can add the PDF later without touching the `.md` file.
+
+Adding a poster at another conference is just those two same-named files: the `.md`
+entry and (optionally) the matching `.pdf`.
+
+### A research / experience entry — new file in `_research/`
+```yaml
+---
+role: "Your role / title"
+org: "Organization"
+type: "Industry"     # "Graduate Research" or "Industry"
+dates: "Jun 2027 – Aug 2027"
+order: 1
+---
+Description. Bullet points work too — start lines with "- ".
+```
+
+### A service item — new file in `_service/`
+```yaml
+---
+what: "Reviewer"                 # the thing you did / role / award
+org: "Conference or organization"
+category: "Review"               # Review | Teaching | Award | Affiliation
+year: "2027"
+order: 1
+body: ""                         # optional extra sentence (used for teaching)
+---
+```
+
+### A news item — edit `_data/news.yml`
+```yaml
+- order: 1                       # lower shows first
+  date: "Sep 2027"
+  text: "Markdown works here, incl. **bold** and [links](https://...)."
+```
+
+## Adding links to existing items
+Every publication, talk, and poster file has a `link:` field. Fill it in to make the
+title clickable — nothing else to change. (For a poster's PDF, see "Adding content"
+above: same-named file in `files/posters/`.)
+
+## Updating your CV
+Drop the new PDF into `files/cv/` with a dated name in the form `cv-YYYY-MM-DD.pdf`,
+e.g. `cv-2026-08-15.pdf`. The "CV" nav link automatically points to the newest one
+(the site sorts by that date in the filename). No template or config edits needed.
+
+Old versions stay in the folder as an archive — you can delete them or leave them;
+they're not linked anywhere, only the newest is. The date is right there in the URL
+when someone opens it. Use zero-padded numbers (`08` not `8`) so the sort stays correct.
+
