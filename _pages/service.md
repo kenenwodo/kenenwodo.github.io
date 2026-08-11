@@ -7,8 +7,8 @@ description: "Professional service, teaching, and affiliations of Kenechukwu Nwo
 
 <h1 class="page-title">Service</h1>
 
-{% assign groups = "Review,Teaching" | split: "," %}
-{% assign labels = "Reviewing,Teaching" | split: "," %}
+{% assign groups = "Review,Teaching,Volunteering" | split: "," %}
+{% assign labels = "Reviewing,Teaching,Volunteering" | split: "," %}
 {% for cat in groups %}
   {% assign items = site.service | where: "category", cat | sort: "order" %}
   {% if items.size > 0 %}
