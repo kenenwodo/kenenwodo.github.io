@@ -37,6 +37,8 @@ collections:
     output: false
   service:
     output: false
+  hackathons:
+    output: false
 
 defaults:
   - scope:

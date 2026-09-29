@@ -7,8 +7,8 @@ description: "Professional service, teaching, and affiliations of Kenechukwu Nwo
 
 <h1 class="page-title">Service</h1>
 
-{% assign groups = "Review,Teaching,Volunteering" | split: "," %}
-{% assign labels = "Reviewing,Teaching,Volunteering" | split: "," %}
+{% assign groups = "Review,Teaching,Volunteering,Award" | split: "," %}
+{% assign labels = "Reviewing,Teaching,Volunteering,Awards &amp; Grants" | split: "," %}
 {% for cat in groups %}
   {% assign items = site.service | where: "category", cat | sort: "order" %}
   {% if items.size > 0 %}
@@ -30,6 +30,6 @@ description: "Professional service, teaching, and affiliations of Kenechukwu Nwo
 {% if affils.size > 0 %}
 <div class="svc-group">
 <h2>Affiliations</h2>
-<p class="affil-line">{% for a in affils %}{{ a.org }} {{ a.what }}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
+<p class="affil-line">{% for a in affils %}{{ a.org }}{% if a.what %} {{ a.what }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
 </div>
 {% endif %}

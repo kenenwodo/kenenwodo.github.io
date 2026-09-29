@@ -5,5 +5,5 @@ venue: "Generative and Agentic AI Reliability, Springer Nature"
 year: 2026
 category: "Book Chapters"
 order: 1
-link: "https://link.springer.com/book/9783032185846"
+link: "https://link.springer.com/chapter/10.1007/978-3-032-18585-3_9"
 ---
